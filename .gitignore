@@ -1,0 +1,22 @@
+# Windows системные файлы
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Файлы операционной системы
+NTUSER.DAT*
+ntuser.*
+
+# Папки редакторов
+.vscode/
+.idea/
+
+# Временные файлы
+*.tmp
+*.temp
+
+# Node.js (если используете)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
