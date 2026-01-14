@@ -1,6 +1,6 @@
-@keyframes icon-pulse {
+@keyframes heart-scale {
   0% { transform: scale(1); }
-  50% { transform: scale(1.25); }
+  50% { transform: scale(1.25); } 
   100% { transform: scale(1); }
 }
 
@@ -10,22 +10,12 @@
   100% { opacity: 0; }
 }
 
-@keyframes heart-scale {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
-}
-
-/* Применение анимаций к иконке Like */
-.like-icon.is-liked {
-  animation: icon-pulse 0.4s ease-in forwards;
-}
-
 .like-icon.is-liked .heart {
   animation: heart-scale 0.3s ease-in 0.1s forwards;
 }
 
 /* Анимация искр */
 .like-icon.is-liked .sparks {
-  opacity: 1;
+  opacity: 0;
   animation: sparks-flash 0.3s ease-in 0.3s forwards;
 }

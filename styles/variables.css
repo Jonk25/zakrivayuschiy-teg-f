@@ -12,7 +12,7 @@
   --font-weight-normal: var(--main-font-weight);
   --font-weight-bold: var(--title-font-weight);
 
-  --themes-mainColor: #000000;    /* Черный цвет для текста */
+  --themes-main-color: #000000;    /* Черный цвет для текста */
   --themes-background: #FFFFFF;   /* Белый цвет для обводки и границы */
   --text-stroke-color: #FFFFFF;   /* Теперь обводка текста белая */
 
@@ -21,10 +21,9 @@
   --text-color-white: #FFFFFF;
   --text-color-black: #000000;
 
-  --contour-color: #000000;
-  --heart-fill-color: #000000;
-  --active-fill-color: #FF0000;
-  --active-contour-color: #CC0000;
+  --contour-color: #000000;      /* Цвет контура по умолчанию */
+  --fill-color: #000000;         /* Цвет заливки при наведении */
+  --active-fill-color: #FF0000;       /* Красный цвет при активных состояниях */
 
    --grid-gradient: 
     repeating-linear-gradient(
