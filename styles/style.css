@@ -2,27 +2,44 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvh;
-  font-family: var(--main-font, 'Inter', Arial, sans-serif);
-  font-variation-settings: 'wght' var(--main-font-weight, 400);
+  font-family: var(--main-font, "Inter", Arial, sans-serif);
+  font-variation-settings: "wght" var(--main-font-weight, 400);
   box-sizing: border-box;
+  background-image: var(--grid-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.container {
+  width: var(--container-width);
+  margin: 0 auto;
+}
+
+.button-text {
+  font-family: var(--accent-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--themes-main-color, #000000);
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
 /* ШАПКА СТРАНИЦЫ */
 .page-header {
-  background: var(--Themes-background, #FFFFFF);
+  background: var(--Themes-background, #ffffff);
   border: 2px solid #000000;
   display: grid;
   text-align: center;
   align-items: center;
+  margin-top: 100px;
   gap: 20px;
-  padding-top: clamp(120px, calc(118.24px + 0.47vw), 125px);
-  padding-right: clamp(17px, calc(9.91vw - 20.15px), 122.5px);
-  padding-bottom: clamp(120px, calc(116.48px + 0.94vw), 130px);
-  padding-left: clamp(17px, calc(9.70vw - 19.38px), 120.3px);
+  padding: 119px 15px;
 }
 
 .page-header__logo {
@@ -45,9 +62,9 @@
 .frame {
   display: flex;
   flex-direction: column;
-  gap: 45px;
-  margin-top: 95px;
-  width: clamp(375px, 100% - 40px, 696px);
+  gap: 50px;
+  margin-top: 100px;
+  margin-bottom: 100px;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -56,8 +73,7 @@
 .card {
   position: relative;
   font-family: var(--main-font);
-  min-height: min-content;
-  background: var(--Themes-background, #FFFFFF);
+  background: var(--Themes-background, #ffffff);
   border: 2px solid #000000;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
@@ -65,32 +81,31 @@
   align-items: start;
 }
 
-.card:last-of-type {
-  padding-bottom: 18px;
-}
-
 .card__title {
   font-family: var(--main-font);
   font-weight: var(--title-font-weight);
-  font-variation-settings: 'wght' var(--title-font-weight);
+  font-variation-settings: "wght" var(--title-font-weight);
   font-size: 18px;
-  padding: 8.7px 7px 1px 10px;
+  padding: 4px 7px 5px 10px;
   word-break: break-word;
 }
 
-.card__description {
-  padding: 24px 26px 0 25px;
+/* Общий класс для всех текстовых параграфов в карточке */
+.card__text {
   font-size: 18px;
   font-family: var(--main-font);
   font-weight: var(--main-font-weight);
+}
+
+/* Для основного описания */
+.card__text_description {
+  padding: 21.5px 26px 0 25px;
   line-height: 1.19;
 }
 
-.card__memories-text {
-  padding: 18px 0 25px 25px;
-  font-size: 18px;
-  font-family: var(--main-font);
-  font-weight: var(--main-font-weight);
+/* Для текста воспоминаний */
+.card__text_memories {
+  padding: 20px 7px 0px 25px;
 }
 
 /* КОНТЕЙНЕР ИЗОБРАЖЕНИЯ */
@@ -106,21 +121,19 @@
   width: 100%;
   height: auto;
   object-fit: cover;
-  transition: filter 0.3s ease;
   aspect-ratio: 1;
 }
 
 .card__image-label {
   position: absolute;
-  top: 6%;
-  right: 5%;
+  top: 24px;
+  right: 20px;
   min-width: max-content;
-  height: auto;
   padding: 2px 6px;
   box-sizing: border-box;
   background: transparent;
   mix-blend-mode: hard-light;
-  font-family: var(--accent-font, 'PressStart2P', 'Courier New', monospace);
+  font-family: var(--accent-font, "PressStart2P", "Courier New", monospace);
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
@@ -132,21 +145,18 @@
   color: var(--themes-main-color, #000000);
   z-index: 1;
   opacity: 0.9;
-  text-shadow: 
-    -1px -1px 0 var(--text-stroke-color, #FFFFFF),
-    1px -1px 0 var(--text-stroke-color, #FFFFFF),
-    -1px  1px 0 var(--text-stroke-color, #FFFFFF),
-    1px  1px 0 var(--text-stroke-color, #FFFFFF);
+  text-shadow: -1px -1px 0 var(--text-stroke-color, #ffffff),
+    1px -1px 0 var(--text-stroke-color, #ffffff),
+    -1px 1px 0 var(--text-stroke-color, #ffffff),
+    1px 1px 0 var(--text-stroke-color, #ffffff);
 }
 
 /* Фолбэк для браузеров без поддержки text-stroke */
-@supports not ((-webkit-text-stroke: 1px var(--text-stroke-color)) or (text-stroke: 1px var(--text-stroke-color))) {
+@supports (-webkit-text-stroke: 1px #ffffff) or (text-stroke: 1px #ffffff) {
   .card__image-label {
-    text-shadow: 
-      -1px -1px 0 var(--text-stroke-color, #FFFFFF),
-       1px -1px 0 var(--text-stroke-color, #FFFFFF),
-      -1px  1px 0 var(--text-stroke-color, #FFFFFF),
-       1px  1px 0 var(--text-stroke-color, #FFFFFF);
+    -webkit-text-stroke: 0.5px var(--text-stroke-color, #ffffff);
+    text-stroke: 0.5px var(--text-stroke-color, #ffffff);
+    text-shadow: none;
   }
 }
 
@@ -156,63 +166,30 @@
 }
 
 .card__image_filter-desaturate {
-  filter: grayscale(80%) brightness(1.1) contrast(0.85);
-}
-
-.card__image_filter-sepia {
-  filter: sepia(0.3) hue-rotate(-10deg) contrast(1.1);
-}
-
-.card__image_filter-contrast {
-  filter: contrast(1.3) saturate(1.4) brightness(1.05);
-}
-
-.card__image_filter-warm {
-  filter: sepia(0.2) brightness(1.08) saturate(1.2);
-}
-
-.card__image_filter-hue-rotate {
-  filter: hue-rotate(15deg) contrast(1.15) saturate(1.3) drop-shadow(2px 2px 3px rgba(0,0,0,0.2));
-}
-
-.card__image_filter-grayscale {
-  filter: grayscale(0.4) brightness(0.9) contrast(0.95);
-}
-
-.card__image_filter-vibrant {
-  filter: contrast(1.15) brightness(1.05) saturate(1.1);
-}
-
-/* Эффекты наведения для всех 8 карточек */
-.card:hover .card__image_filter-blur {
-  filter: blur(2px) brightness(0.95) contrast(0.9);
-}
-
-.card:hover .card__image_filter-desaturate {
   filter: hue-rotate(-45deg) saturate(0.4) brightness(0.9);
 }
 
-.card:hover .card__image_filter-sepia {
+.card__image_filter-sepia {
   filter: saturate(2.5) hue-rotate(45deg);
 }
 
-.card:hover .card__image_filter-contrast {
+.card__image_filter-contrast {
   filter: hue-rotate(90deg) saturate(2) brightness(1.2) contrast(1.3);
 }
 
-.card:hover .card__image_filter-warm {
+.card__image_filter-warm {
   filter: hue-rotate(180deg) brightness(1.5) contrast(0.8);
 }
 
-.card:hover .card__image_filter-hue-rotate {
+.card__image_filter-hue-rotate {
   filter: sepia(0.8) saturate(0.35);
 }
 
-.card:hover .card__image_filter-grayscale {
+.card__image_filter-grayscale {
   filter: blur(12px) contrast(0.7);
 }
 
-.card:hover .card__image_filter-vibrant {
+.card__image_filter-vibrant {
   filter: hue-rotate(120deg) saturate(2.5);
 }
 
@@ -221,13 +198,9 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: auto;
-  padding: 24px 25px 26px 0;
-}
-
-.card:nth-of-type(8) .card__footer.like-container {
-  transform: translateY(20px);
+  padding: 25px 25px 22.5px 0;
 }
 
 .card__icon-button {
@@ -241,8 +214,8 @@
   position: relative;
   transition: border-color 0.3s ease;
   box-sizing: border-box;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
 }
 
@@ -251,9 +224,7 @@
 }
 
 .card__icon-button:focus-visible {
-  outline: 2px solid var(--accent-color, #000000);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 2px var(--accent-color, #000000);
+  border-color: var(--accent-color, #000000);
 }
 
 /* ИКОНКА ЛАЙКА И ЕЁ АНИМАЦИИ */
@@ -322,13 +293,13 @@
 .like-icon:active .heart .core,
 .card__icon-button:active .heart .core {
   fill: var(--active-fill-color);
-  transition: fill 0s linear;
+  transition: fill 0.3s linear 0s;
 }
 
 .like-icon:active .heart .main-body,
 .card__icon-button:active .heart .main-body {
   fill: var(--active-fill-color);
-  transition: fill 0s linear;
+  transition: fill 0.3s linear 0.05s;
 }
 
 .like-icon.is-liked .heart .core {
@@ -353,7 +324,7 @@
   z-index: 1;
   transition: box-shadow 0.1s ease;
   border: 2px solid var(--themes-main-color, #000000);
-  background: var(--Themes-background, #FFFFFF);
+  background: var(--Themes-background, #ffffff);
   font-family: var(--accent-font);
   cursor: pointer;
   display: flex;
@@ -372,7 +343,7 @@
 }
 
 .common-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -394,67 +365,24 @@
   color: var(--text-color-black, #000000);
   font-size: 14px;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.5s ease-in-out;
   mix-blend-mode: difference;
 }
 
 .common-button:hover .common-button__text {
-  color: var(--text-color-white, #FFFFFF);
+  color: var(--text-color-white, #ffffff);
   mix-blend-mode: difference;
 }
 
 .card__like-button {
   min-width: 130px;
-  padding: 9px 20px;
-}
-
-.card__like-button-text {
-  font-family: var(--accent-font);
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
-}
-
-/* Специфичные стили для кнопок с фокусом */
-.card__like-button:focus,
-.save-button:focus,
-.dialog__button:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.card__like-button:focus-visible,
-.save-button:focus-visible,
-.dialog__button:focus-visible {
-  outline: none;
-  box-shadow: 2px 2px 0 0 var(--accent-color, #000000);
-}
-
-.card__like-button::before,
-.save-button::before,
-.dialog__button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent-color, #000000);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 0;
-}
-
-.card__like-button:hover::before,
-.save-button:hover::before,
-.dialog__button:hover::before {
-  transform: translateX(0);
+  padding: 10px 20px;
 }
 
 .card__like-button:hover .card__like-button-text,
 .save-button:hover .save-button__text,
 .dialog__button:hover .dialog__button-text {
-  color: var(--text-color-white, #FFFFFF);
+  color: var(--text-color-white, #ffffff);
   mix-blend-mode: difference;
 }
 
@@ -468,8 +396,8 @@
 
 .save-button {
   min-height: 55px;
-  padding: 20px 20px 20px 20px;
-  gap: 10px;
+  padding: 16px 20px 15px 20px;
+  gap: 8px;
   flex-direction: column;
 }
 
@@ -479,18 +407,14 @@
   width: 28px;
   height: 28px;
   flex-shrink: 0;
-  transition: filter 0.5s ease-in-out;
+  fill: currentColor;
 }
 
 .save-button:hover svg {
-  filter: invert(1);
+  filter: invert(1) brightness(100);
 }
 
 .save-button__text {
-  font-family: var(--accent-font);
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
   white-space: nowrap;
 }
 
@@ -501,21 +425,14 @@
   margin: auto;
   width: min(335px, 95vw);
   max-width: 100%;
-  min-height: 191px;
-  max-height: 90vh;
   border: 2px solid #000;
-  background: var(--Themes-background, #FFFFFF);
+  background: var(--Themes-background, #ffffff);
   padding: 0px;
   overflow-y: auto;
   z-index: 1;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
   opacity: 0;
   transform: translateY(20px);
-  transition: 
-    opacity 0.3s ease-out,
-    transform 0.3s ease-out,
-    visibility 0.3s;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
   visibility: hidden;
   display: flex;
   flex-direction: column;
@@ -529,8 +446,11 @@
 }
 
 .dialog::backdrop {
-  background: linear-gradient(180deg, #E7E7E7 0%, #1A1A1A 100%);
-  opacity: 0.75;
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.8) 0%,
+    rgb(0 0 0 / 0.5) 100%
+  );
 }
 
 .dialog__content {
@@ -573,42 +493,43 @@
 }
 
 .dialog__button-text {
-  font-family: var(--accent-font);
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
   text-transform: uppercase;
 }
 
 /* АДАПТИВНЫЕ СТИЛИ */
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
   .page {
-    padding: 100px min(5%, 50px) 44px;
-    max-width: 1400px;
     margin: 0 auto;
   }
 
   .page-header {
-    margin-left: 15px;
     gap: 19px;
+    padding: 125px 122.5px 130px 120.3px;
   }
 
   .frame {
-    margin-left: 14px;
     gap: 50px;
   }
-  
+
+  .card__title {
+    padding: 0 0 3px 10px;
+  }
+
   .card__image {
     max-width: 696px;
     height: 696px;
   }
 
-  .card__footer {
-    padding: 0 25px 26px 0;
+  .card__text_description {
+    padding-top: 25px;
   }
 
-  .card__memories-text {
-    padding-top: 19px;
+  .card__text_memories {
+    padding-top: 23px;
+  }
+
+  .card__footer {
+    padding: 24px 25px 26px 0;
   }
 
   .save-button {
