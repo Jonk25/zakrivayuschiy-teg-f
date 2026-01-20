@@ -16,7 +16,6 @@
   --themes-main-color: #000000;    /* Черный цвет для текста */
   --themes-background: #FFFFFF;   /* Белый цвет для обводки и границы */
   --text-stroke-color: #FFFFFF;   /* Теперь обводка текста белая */
-  --accent-color: #000000;
 
   --accent-color: #000000; /* Акцентный цвет (черный) */
   --button-hover-bg: #000000; /* Фон при наведении */
