@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 }
 
 .container {
@@ -389,7 +390,7 @@
   position: fixed;
   inset: 0;
   margin: auto;
-  width: min(335px, 95vw);
+  width: min(341px, 95vw);
   max-width: 100%;
   border: 2px solid #000;
   background: var(--themes-background, #ffffff);
@@ -462,14 +463,12 @@
 /* АДАПТИВНЫЕ СТИЛИ */
 @media (min-width: 768px) {
   .page-header {
-    gap: 21px;
+    gap: 17px;
     padding: 128px 122px 128px 122px;
-    margin-top: 97px;
   }
 
   .frame {
     margin-top: 96px;
-    margin-bottom: auto;
     gap: 50px;
   }
 
@@ -498,5 +497,9 @@
   .save-button svg {
     width: 21px;
     height: 21px;
+  }
+
+  .dialog {
+    width: min(353px, 95vw);
   }
 }
